@@ -14,7 +14,7 @@ x_min = -5.0
 x_max = 5.0
 n_DVR = 400
 n_g = 601
-D0 = 50.0
+D0 = 43.0
 a = 1.5
 V = lambda x: (D0 / a**4) * (x**2 - a**2)**2
 n_plot = 15
@@ -36,9 +36,9 @@ for i, e in enumerate(E[:n_plot]):
 plt.figure(figsize=(6,4))
 plt.subplots_adjust(left=0.05, right=0.95,
                     bottom=0.05, top=0.95)
-plt.plot(x, V(x), 'k-', lw=2)
 for i in range(n_plot):
     plt.plot([x[0], x[-1]], [E[i], E[i]], '--', color='gray')
+plt.plot(x, V(x), 'k-', lw=2)
 for i in range(n_plot):
     plt.plot(x, scale * psi_x[i] + E[i])
 plt.xlim(-3, 3)
