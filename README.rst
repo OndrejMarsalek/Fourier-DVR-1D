@@ -2,8 +2,8 @@
 Fourier DVR 1D
 ==============
 
-.. http://imageshack.us/photo/my-images/694/yr0.png/?sa=0
-.. image:: http://imageshack.us/a/img694/4677/yr0.png
+.. https://gist.github.com/OndrejMarsalek/5835711
+.. image:: https://gist.github.com/OndrejMarsalek/5835711/raw/043dd897cf849dcd0563a1b1e992dd4d3f832739/double-well-title.png
     :align: center
     :width: 100 %
 
