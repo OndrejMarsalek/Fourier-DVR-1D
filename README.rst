@@ -2,8 +2,8 @@
 Fourier DVR 1D
 ==============
 
-.. http://imageshack.us/photo/my-images/15/o0t.png/?sa=0
-.. image:: http://imageshack.us/a/img15/3098/o0t.png
+.. http://imageshack.us/photo/my-images/694/yr0.png/?sa=0
+.. image:: http://imageshack.us/a/img694/4677/yr0.png
     :align: center
     :width: 100 %
 
