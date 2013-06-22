@@ -65,7 +65,7 @@ class Domain_Fourier_DVR_1D(object):
         b = self._b
         n_DVR = self._n_DVR
 
-        # construct position operator in Fourier sine base
+        # construct position operator in Fourier sine basis
         i = np.arange(1, n_DVR+1, dtype=float)[:, np.newaxis].repeat(n_DVR, axis=1)
         j = i.transpose()
         ipj = i + j
