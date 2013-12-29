@@ -1,21 +1,7 @@
 import logging
+
 import numpy as np
-
-
-def _eig_sorted(M):
-    """Convenience wrapper over numpy.linalg.eig.
-
-    :param M: matrix
-    :type M: 2D numpy array
-
-    Returns eigenvalues and eigenvectors of M sorted by eigevalue magnitude.
-
-    """
-
-    val, vec = np.linalg.eig(M)
-    idx_sort = val.argsort()
-
-    return val[idx_sort], vec[:, idx_sort]
+import scipy.linalg
 
 
 class Domain_Fourier_DVR_1D(object):
@@ -74,7 +60,7 @@ class Domain_Fourier_DVR_1D(object):
         fact = -8.0 * (b-a) / np.pi**2
         X_four = fact * np.where(ipjmod1, (i*j) / div, 0.0)
 
-        x, phi_four = _eig_sorted(X_four)
+        x, phi_four = scipy.linalg.eigh(X_four)
         x = x + (a+b) / 2.0
 
         self._x = x
@@ -116,11 +102,12 @@ class Domain_Fourier_DVR_1D(object):
 
             logging.debug('build V | done')
 
-    def solve(self, m, V):
+    def solve(self, m, V, n_states=None):
         """Solve the Schroedinger equation on this domain.
 
         :param m: mass
-        :param V: potential energy - real-space vectoried function
+        :param V: potential energy - real-space vectorized function
+        :param n_states: number of states to calculate
 
         Returns eigenenergies and eigenstates of the Hamiltonian sorted
         by eigenenergy magnitude.
@@ -128,6 +115,11 @@ class Domain_Fourier_DVR_1D(object):
         """
 
         logging.debug('solve | start')
+
+        if n_states is None:
+            eigvals = None
+        else:
+            eigvals = (0, n_states)
 
         # update kinetic energy and potential operators, if needed
         self._update_T_four(m)
@@ -139,7 +131,7 @@ class Domain_Fourier_DVR_1D(object):
         logging.debug('solve | Hamiltonian built')
 
         # solve
-        E, psi_four = _eig_sorted(H_four)
+        E, psi_four = scipy.linalg.eigh(H_four, eigvals=eigvals)
 
         logging.debug('solve | done')
 

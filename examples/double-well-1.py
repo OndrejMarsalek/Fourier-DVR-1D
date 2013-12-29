@@ -12,26 +12,31 @@ from fourier_DVR_1D import Domain_Fourier_DVR_1D
 m = 1.0
 x_min = -5.0
 x_max = 5.0
-n_DVR = 300
-n_g = 601
+n_DVR = 500
+n_g = 1001
 D0 = 5.0
 a = 1.0
 V = lambda x: (D0 / a**4) * (x**2 - a**2)**2
+n_states = 15
 n_plot = 15
 scale = 2.0
 
 # enable debug info printing
-logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+FORMAT = '%(asctime)-15s %(message)s'
+logging.basicConfig(stream=sys.stderr, level=logging.DEBUG, format=FORMAT)
 
 # solve
 domain = Domain_Fourier_DVR_1D(x_min, x_max, n_DVR)
-E, E_four = domain.solve(m, V)
+E, E_four = domain.solve(m, V, n_states=n_states)
 
 # evaluate eigenstates on grid
 x = np.linspace(x_min, x_max, n_g)
 psi_x = domain.grid(x, E_four[:,:n_plot])
 
 # print energies
+print 'Eigenenergies'
+print '-------------'
+print
 for i, e in enumerate(E[:n_plot]):
     print '%3i %12.6f' % (i, e)
 
