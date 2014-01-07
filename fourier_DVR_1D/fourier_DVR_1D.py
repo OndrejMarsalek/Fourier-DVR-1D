@@ -127,12 +127,10 @@ class Domain_Fourier_DVR_1D(object):
 
         # construct the Hamiltonian
         H_four = self._T_four + self._V_four
-
         logging.debug('solve | Hamiltonian built')
 
         # solve
-        E, psi_four = scipy.linalg.eigh(H_four, eigvals=eigvals)
-
+        E, psi_four = scipy.linalg.eigh(H_four, eigvals=eigvals, overwrite_a=True)
         logging.debug('solve | done')
 
         return E, psi_four
