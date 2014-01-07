@@ -10,8 +10,8 @@ from fourier_DVR_1D import Domain_Fourier_DVR_1D
 
 # settings
 m = 1.0
-x_min = -5.0
-x_max = 5.0
+x_min = -3.0
+x_max = 3.0
 n_DVR = 500
 n_g = 1001
 D0 = 5.0
