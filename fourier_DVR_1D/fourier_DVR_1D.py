@@ -102,15 +102,16 @@ class Domain_Fourier_DVR_1D(object):
 
             logging.debug('build V | done')
 
-    def solve(self, m, V, n_states=None):
+    def solve(self, m, V, n_states=None, calc_eigenstates=True):
         """Solve the Schroedinger equation on this domain.
 
         :param m: mass
         :param V: potential energy - real-space vectorized function
         :param n_states: number of states to calculate
+        "param calc_eigenstates: whether to return eigenstates as well
 
-        Returns eigenenergies and eigenstates of the Hamiltonian sorted
-        by eigenenergy magnitude.
+        Returns eigenenergies and (optionally) eigenstates of the Hamiltonian
+        sorted by eigenenergy magnitude.
 
         """
 
@@ -130,10 +131,14 @@ class Domain_Fourier_DVR_1D(object):
         logging.debug('solve | Hamiltonian built')
 
         # solve
-        E, psi_four = scipy.linalg.eigh(H_four, eigvals=eigvals, overwrite_a=True)
+        eigvals_only = not calc_eigenstates
+        result = scipy.linalg.eigh(H_four,
+                                   eigvals=eigvals,
+                                   eigvals_only=eigvals_only,
+                                   overwrite_a=True)
         logging.debug('solve | done')
 
-        return E, psi_four
+        return result
 
 
     def grid(self, x, psi_four):
