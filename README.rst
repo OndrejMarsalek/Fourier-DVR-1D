@@ -2,8 +2,7 @@
 Fourier DVR 1D
 ==============
 
-.. https://gist.github.com/OndrejMarsalek/5835711
-.. image:: https://gist.github.com/OndrejMarsalek/5835711/raw/043dd897cf849dcd0563a1b1e992dd4d3f832739/double-well-title.png
+.. image:: double-well-title.png
     :align: center
     :width: 100 %
 
